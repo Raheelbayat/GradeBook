@@ -11,11 +11,10 @@ class Student:
     def get_full_name(self):
         return self.full_name
 
-    def set_email(self):
-        self.email = self.full_name
-
     def set_email(email):
-        email += email
+        self.email = self.full_name
+        return self.email
+
 
     def enroll_course(course_code):
         self.courses.append(course_code)  #would not work! first make the course code dictionary or list then try
