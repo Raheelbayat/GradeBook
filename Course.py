@@ -1,3 +1,4 @@
+
 class Course:
     def __init__(self, course_code, course_name):
         self.course_code = course_code
@@ -9,7 +10,7 @@ class Course:
         if student_id not in self.students:
             self.students.append(student_id)
 
-    def add_assessment(self, assessment):
+    def add_assessment(self, assessment, title, max_score):
         if assessment not in self.assessments:
             self.assessments.append(assessment)
 
@@ -27,3 +28,8 @@ class Course:
         print("Assessments:")
         for assessment in self.assessments:
             print(f"Assessment: {assessment.title} / Max Score: {assessment.max_score}")
+
+c1 = Course("C1", "Math", )
+c2 = Course("C2", "Deutsch")
+print(c1.display_info())
+print(c2.display_info())
