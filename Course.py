@@ -29,7 +29,3 @@ class Course:
         for assessment in self.assessments:
             print(f"Assessment: {assessment.title} / Max Score: {assessment.max_score}")
 
-c1 = Course("C1", "Math", )
-c2 = Course("C2", "Deutsch")
-print(c1.display_info())
-print(c2.display_info())

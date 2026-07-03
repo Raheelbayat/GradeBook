@@ -37,7 +37,3 @@ class Student:
         else:
             print("Courses: No courses enrolled")
 
-s1 = Student("S101", "Mohammad Karim", "Karimmoh12@gmail.com", ["Quran", "Math"])
-s1.display_info()
-s2 = Student("S002", "Ahmad Murtazawi", "Qaramurteaza@yahoo.com", ["German"] )
-s2.display_info()

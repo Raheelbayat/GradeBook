@@ -4,7 +4,7 @@ class Assessment:
         self.max_score = max_score
 
     def calculate_percentage(self, score):
-        return (f"Your score is: {score * 100} %. ")
+        return (score/ self.max_score) * 100
 
     def grade_message(self, score):
         if score >= 90:
@@ -19,4 +19,12 @@ class Assessment:
             return "F"
 
     def display_info(self):
-        print(f"{self.title}- Max Score: {self.max_score}")
+        print(f"{self.title}- {self.max_score}%")
+        # percentage = self.calculate_percentage(self.score)
+        # grade = self.grade_message(percentage)
+        #
+        # print(f"Assessment: {self.title}")
+        # print(f"Max Score: {self.max_score}")
+        # print(f"Score: {self.score}")
+        # print(f"Percentage: {percentage:.2f}%")
+        # print(f"Grade: {grade}")
