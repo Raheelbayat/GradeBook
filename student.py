@@ -1,5 +1,3 @@
-student = {}
-
 class Student:
     def __init__(self, student_id, full_name, email, courses):
         self.student_id = student_id

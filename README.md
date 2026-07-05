@@ -1,6 +1,7 @@
+<<<<<<< HEAD
 # My Project Title: GradeBook
 
-## WHo is the code writer of this Project?
+## Who is the code writer of this Project?
 Raheel Bayat.
 
 ##Functions of GradeBook:
@@ -41,3 +42,6 @@ I have used method overriding in child classes (Quiz, Project, and Exam).
 
 ## What are my two custom features?
 Search better and Teacher comments.
+=======
+jhl
+>>>>>>> fdbfc51ae080d8d9aea031ee2f5761de9b37bbce
