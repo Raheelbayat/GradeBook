@@ -19,12 +19,4 @@ class Assessment:
             return "F"
 
     def display_info(self):
-        print(f"{self.title}- {self.max_score}%")
-        # percentage = self.calculate_percentage(self.score)
-        # grade = self.grade_message(percentage)
-        #
-        # print(f"Assessment: {self.title}")
-        # print(f"Max Score: {self.max_score}")
-        # print(f"Score: {self.score}")
-        # print(f"Percentage: {percentage:.2f}%")
-        # print(f"Grade: {grade}")
+        print(f"{self.title}- {self.max_score}")

@@ -1,3 +1,4 @@
+import student
 from student import Student
 from course import Course
 from assessment import Assessment
@@ -15,8 +16,12 @@ class Gradebook:
         #student.student_id: take the ID inside the student object
         # =student: update and put it into the student variable
 
-    def add_course(self, course):
-        self.courses[course.course_code] = course
+    def add_course(self, course_code):
+        course = self.courses[course_code]
+        if course_code not in student.courses:
+            student.courses.append(course_code)
+            course.students.append(student)
+
 
     def enroll_student(self, student_id, course_code):
         if student_id not in self.students:
@@ -43,24 +48,50 @@ class Gradebook:
             course.assessments.append(assessment)
             print(f"{assessment.title} added to {course_code}")
 
-        # def record_grade(self, student_id, course_code, assessment, title, score):
-        #     if student_id not in self.students:
-        #         return "Student not found"
-        #
-        #     if course_code not in self.courses:
-        #         return "Course not found"
-        #     course = self.courses[course_code]
-        #
-        #     if title not in course.assessments:
-        #         return "Assessment not found"
-        #
-        #     key = student_id + "_" + course_code
-        #     if key not in self.grades:
-        #         self.grades[key] = {}
-        #     self.grades[key][title] = score
-        #     print(f"{student_id} got {score} in {title} ({course_code})")
+        def record_grade(self, student_id, course_code, assessment_title, score):
+            if student_id not in self.students:
+                print(f"Student not found")
+                return
 
+            if course_code not in self.courses:
+                print(f"Course not found")
+                return
+            course = self.courses[course_code]
+            #here I will check if assessment exist:
+            assessment_found = None
+            for assessment in course.assessments:
+                if assessment.title == assessment_title:
+                    assessment_found = assessment
+                    break
 
-gradebook = Gradebook()
-s1 = Student("S001", "Maria", "ali@email.com", [])
-gradebook.add_student(s1)
+            if assessment_found is None:
+                print("Assessment not found")
+                return
+
+            if score < 0 or score > assessment_found.max_score:
+                print("Invalid score")
+                return
+
+            #here we saved the information in the score variable
+            self.grades[(student_id, course_code, assessment_title)] = score
+            print("Grade is recorded successfully.")
+
+        def calculate_average(self, student_id, course_code):
+            total_score = 0
+            number_of_existing_scores = 0
+            for key, score in self.grades.items():
+                if key[1] == course_code:  #looks forward to check if the grade belongs to PY101 the grade belongs to the exact course we want.
+                    total_score += score
+                    number_of_existing_scores += 1
+
+            if student_id == 0:
+                print(f"No student found for {course_code}")
+                return
+            if number_of_existing_scores == 0:
+                print(f"No score found for {course_code}")
+                return
+
+            return total_score / number_of_existing_scores
+
+average = Gradebook.calculate_average("PY101")
+print(average)
