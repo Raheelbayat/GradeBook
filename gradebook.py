@@ -20,8 +20,8 @@ class Gradebook:
 
     def enroll_student(self, student_id, course_code):
         if student_id not in self.students:
-            return "No Student found"
-
+            print(f"No Student found")
+            return
         # if course_code not in self.courses: as  I have already asked above, so I might not repeat it.
         #     return "Course not found"
 
@@ -33,9 +33,15 @@ class Gradebook:
         else:
             print(f"{student_id} is already enrolled in {course_code}")
 
-        # def add_assessment(self, course_code, assessment):
-        #     #Check!
-        #     assessment.[course_code] = course
+        def add_assessment(self, course_code, assessment):
+            if course_code not in self.courses:
+                print(f"No course found")
+                return #I should keep in mind that if I write return instead of print to make the code shorter
+            #the code will run and if the course dont found among course list then it will just return none without any message: no course found.
+
+            course = self.courses[course_code]
+            course.assessments.append(assessment)
+            print(f"{assessment.title} added to {course_code}")
 
         # def record_grade(self, student_id, course_code, assessment, title, score):
         #     if student_id not in self.students:

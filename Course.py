@@ -9,7 +9,7 @@ class Course:
         if student_id not in self.students:
             self.students.append(student_id)
 
-    def add_assessment(self, assessment, title, max_score):
+    def add_assessment(self, assessment):
         if assessment not in self.assessments:
             self.assessments.append(assessment)
 
