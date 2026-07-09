@@ -20,9 +20,6 @@ class Gradebook:
 
     def add_course(self, course_code):
         course = self.courses[course_code]
-        if course_code not in student.courses:
-            student.courses.append(course_code)
-            course.students.append(student)
 
     def enroll_student(self, student_id, course_code):
         if student_id not in self.students:
@@ -39,15 +36,15 @@ class Gradebook:
         else:
             print(f"{student_id} is already enrolled in {course_code}")
 
-        def add_assessment(self, course_code, assessment):
-            if course_code not in self.courses:
-                print(f"No course found")
-                return  # I should keep in mind that if I write return instead of print to make the code shorter
-            # the code will run and if the course dont found among course list then it will just return none without any message: no course found.
+    def add_assessment(self, course_code, assessment):
+        if course_code not in self.courses:
+            print(f"No course found")
+            return  # I should keep in mind that if I write return instead of print to make the code shorter
+        # the code will run and if the course dont found among course list then it will just return none without any message: no course found.
 
-            course = self.courses[course_code]
-            course.assessments.append(assessment)
-            print(f"{assessment.title} added to {course_code}")
+        course = self.courses[course_code]
+        course.assessments.append(assessment)
+        print(f"{assessment.title} added to {course_code}")
 
     def record_grade(self, student_id, course_code, assessment_title, score):
         if student_id not in self.students:
@@ -82,6 +79,8 @@ class Gradebook:
         number_of_existing_scores = 0
         for key, score in self.grades.items():
             if key[0] == student_id and key[1] == course_code:
+                total_score += score
+                number_of_existing_scores += 1
 
         if student_id not in self.students:
             print(f"No student found for {course_code}")
@@ -94,28 +93,23 @@ class Gradebook:
         return average_score
 
     def show_report(self, student_id):
-        student_name = self.students[student_id]
-        course_name = self.courses[student_id]
-        student_grades = self.grades[student_id]
-        student_average = self.calculate_average(student_id, course_name)
-        print(student_name)
-        print(course_name)
-        print(student_grades)
-        print(student_average)
+        student = self.students[student_id]
+        print(student.full_name)
 
-        if student_average >= self.passing_grades:
-            print(f"Passed!")
-            if student_average >= 95:
-                print("A")
-            elif student_average >= 80:
-                print("B")
-            elif student_average >= 70:
-                print("C")
-            elif student_average >= 60:
-                print("D")
-            else:
-                print("F")
-            return
-        else:
-            print(f"Failed!")
-            return
+
+        # if student_average >= self.passing_grades:
+        #     print(f"Passed!")
+        #     if student_average >= 95:
+        #         print("A")
+        #     elif student_average >= 80:
+        #         print("B")
+        #     elif student_average >= 70:
+        #         print("C")
+        #     elif student_average >= 60:
+        #         print("D")
+        #     else:
+        #         print("F")
+        #     return
+        # else:
+        #     print(f"Failed!")
+        #     return
