@@ -7,16 +7,17 @@ class Assessment:
         return (score/ self.max_score) * 100
 
     def grade_message(self, score):
-        if score >= 90:
+        percentage = self.calculate_percentage(score)
+        if percentage >= 90:
             return "A"
-        elif score >= 80:
+        elif percentage >= 80:
             return "B"
-        elif score >= 70:
+        elif percentage >= 70:
             return "C"
-        elif score >= 60:
+        elif percentage >= 60:
             return "D"
         else:
             return "F"
 
     def display_info(self):
-        print(f"{self.title}- {self.max_score}")
+        print(f"{self.title}- Max Score: {self.max_score}")

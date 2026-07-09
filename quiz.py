@@ -6,14 +6,25 @@ class Quiz(Assessment):
               f"Quiz Title: {self.title}- Max Score: {self.max_score}")
 
     def grade_message(self, score):
-        if score >= 9:
-            return f"Great job! You got {self.max_score} points, which is over 90."
-        elif score >= 8:
-            return f"Very good job! You got {self.max_score} points, which is over 80."
-        elif score >= 7:
-            return f"Good job! You got {self.max_score} points, which is over 70."
-        elif score >= 6:
-            return f"Not that Bad! You got {self.max_score} points, which is less than 70."
+        percentage  = self.calculate_percentage(score)
+        if percentage >= 95:
+            return "Great job!"
+        elif percentage >= 80:
+            return "Very good job!"
+        elif percentage >= 70:
+            return "Good job!"
+        elif percentage >= 60:
+            return "Not that Bad!"
         else:
-            return (f"Please, Try more! You got {self.max_score} points, which is lower than the required score for "
-                    f"passing tp the next grade.")
+            return "Please, Try more!"
+
+        # if score >= 9:
+        #     return "Great job!"
+        # elif score >= 8:
+        #     return "Very good job!"
+        # elif score >= 7:
+        #     return "Good job!"
+        # elif score >= 6:
+        #     return "Not that Bad!"
+        # else:
+        #     return "Please, Try more!"
