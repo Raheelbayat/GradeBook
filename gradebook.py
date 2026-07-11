@@ -93,23 +93,23 @@ class Gradebook:
         return average_score
 
     def show_report(self, student_id):
-        student = self.students[student_id]
-        print(student.full_name)
+        if student_id not in self.students:
+            print("Student not found")
+            return
+
+    student = self.students[student_id]
+    print(f"Name: {student.full_name}\nScore: {student.score}\n"
+          f"Average: {self.calculate_average(student.student_id, student.course_code)}"
+          f"Letter Grade: {student.letter_grade}\n")
+    if student.calculate_average(student.student_id, student.course_code) > self.passing_grades:
+        print("Result: Passed")
+    else:
+        print("Result: Failed")
 
 
-        # if student_average >= self.passing_grades:
-        #     print(f"Passed!")
-        #     if student_average >= 95:
-        #         print("A")
-        #     elif student_average >= 80:
-        #         print("B")
-        #     elif student_average >= 70:
-        #         print("C")
-        #     elif student_average >= 60:
-        #         print("D")
-        #     else:
-        #         print("F")
-        #     return
-        # else:
-        #     print(f"Failed!")
-        #     return
+gb = Gradebook()
+student1 = Student("S003", "Ahmad", "LastAhmad@gmail.com", "Neuromatch")
+gb.add_student(student1)
+gb.record_grade("S003", "N200", "Mid_term_Exam", 98)
+print(gb.students)
+gb.show_report("S003")
