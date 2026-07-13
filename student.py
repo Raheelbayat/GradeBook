@@ -3,7 +3,7 @@ class Student:
         self.student_id = student_id
         self.full_name = full_name
         self.email = email
-        self.courses = courses
+        self.courses = []
 
     def get_id(self):
         return self.student_id

@@ -12,7 +12,7 @@ class Project(Assessment):
             return f"Great Project!"
         elif score >= 70:
             return f"Excellent Project!"
-        elif score >= 60:
+        elif score >= 50:
             return f"Needs small changes! Try a bit more."
         elif score <= 40:
             return f"Please, Try again! Project needs improvement!"

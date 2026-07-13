@@ -14,8 +14,8 @@ class Gradebook:
         # student.student_id: take the ID inside the student object
         # =student: update and put it into the student variable
 
-    def add_course(self, course_code):
-        course = self.courses[course_code]
+    def add_course(self, course):
+        self.courses[course.course_code] = course
 
     def enroll_student(self, student_id, course_code):
         if student_id not in self.students:
