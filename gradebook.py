@@ -1,5 +1,5 @@
-
 import student
+
 
 class Gradebook:
     def __init__(self):
@@ -92,33 +92,52 @@ class Gradebook:
         if student_id not in self.students:
             print("Student not found")
             return
-        for (studntid, course_code, assessment), score in self.grades.items():
-            if studntid == student_id:
-                print(f"{course_code} - {assessment}: {score}")
-
         student = self.students[student_id]
-        print(f"Name: {student.full_name}\nScore: {student.score}\n"
-              f"Average: {self.calculate_average(student.student_id, student.course_code)}"
-              )
+        print(f"Name: {student.full_name}")
+        print(f"Email: {student.email}")
 
-        if student.calculate_average(student.student_id, student.course_code) > self.passing_grades:
-            print(f"Result: Passed")
-        else:
-            print("Result: Failed")
+        for (studentid, course_code, assessment_title), score in self.grades.items():
+            if studentid == student_id:
+                course = self.courses[course_code]
+                assessment = course.find_assessment(assessment_title)
+                letter = assessment.get_letter_grade(score)
+                message = assessment.grade_message(score)
 
-    def search_student(self, student_id):
-        if student_id in self.students:
-            return self.students[student_id]
-        else:
-            print("Student not found")
-            return
+            print(f"{course_code} - {assessment_title}: {score}")
+            print(f"Letter Grade: {letter}")
+
+        for course_code in student.courses:
+            average = self.calculate_average(student_id, course_code)
+
+            print(f"{course_code} Average: {average}")
+
+            if average >= self.passing_grades:
+                print("Result: Passed")
+            else:
+                print("Result: Failed")
+            print(f"Feedback: {message}")
+
+    def search_student(self, studentterm):
+        if studentterm in self.students:
+            return self.students[studentterm]
+
+        for student in self.students.values():
+            if student.full_name == studentterm:
+                return student
+
+        print("Student not found")
 
     def delete_student(self, student_id):
-        if student_id in self.students:
-            del self.students[student_id]
-            print("Student deleted")
-        else:
+        student = self.students[student_id]
+        if student_id not in self.students:
             print("Student not found")
+            return
+        for course_code in student.courses:
+            if course_code in self.courses:
+                course = self.courses[course_code]
+                if student_id in course.students:
+                    course.students.remove(student_id)
+        del self.students[student_id]
 
     def get_result(self, average):
         if self.calculate_average(student.student_id, student.course_code) > self.passing_grades:
