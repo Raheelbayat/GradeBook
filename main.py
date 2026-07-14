@@ -32,7 +32,7 @@ gradebook.add_assessment("NM01", quiz1)
 gradebook.add_assessment("NM01", exam1)
 gradebook.add_assessment("NM01", project1)
 gradebook.add_assessment("NM01", exam2)
- 
+
 course = gradebook.courses["NM01"]
 
 for assessment in course.assessments:

@@ -3,7 +3,7 @@ from assessment import Assessment
 class Quiz(Assessment):
     def display_info(self):
         print(f"Your Scores detailed_info is:\n"
-              f"Quiz Title: {self.title}- Max Score: {self.max_score}")
+              f"Quiz Title: {self.title}, Max Score: {self.max_score}")
 
     def grade_message(self, score):
         percentage  = self.calculate_percentage(score)
@@ -17,14 +17,3 @@ class Quiz(Assessment):
             return "Not that Bad!"
         else:
             return "Please, Try more!"
-
-        # if score >= 9:
-        #     return "Great job!"
-        # elif score >= 8:
-        #     return "Very good job!"
-        # elif score >= 7:
-        #     return "Good job!"
-        # elif score >= 6:
-        #     return "Not that Bad!"
-        # else:
-        #     return "Please, Try more!"

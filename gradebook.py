@@ -117,6 +117,7 @@ class Gradebook:
                 print("Result: Failed")
             print(f"Feedback: {message}")
 
+
     def search_student(self, studentterm):
         if studentterm in self.students:
             return self.students[studentterm]
@@ -140,7 +141,7 @@ class Gradebook:
         del self.students[student_id]
 
     def get_result(self, average):
-        if self.calculate_average(student.student_id, student.course_code) > self.passing_grades:
-            print("Result: Passed")
+        if average >= self.passing_grades:
+            return "Passed"
         else:
-            print("Result: Failed")
+            return "Failed"

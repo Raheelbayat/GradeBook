@@ -3,7 +3,7 @@ from assessment import Assessment
 class Project(Assessment):
     def display_info(self):
         print(f"Your Scores detailed_info is:\n"
-              f"Project Title: {self.title}- Max Score: {self.max_score}")
+              f"Project Title: {self.title}, Max Score: {self.max_score}")
 
     def grade_message(self, score):
         if score >= 90:
