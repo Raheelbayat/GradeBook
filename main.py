@@ -21,3 +21,19 @@ gradebook.enroll_student("S001", "NM01")
 gradebook.enroll_student("S002", "NM01")
 print(gradebook.students)
 print(gradebook.courses)
+
+quiz1 = Quiz("Quiz 1", 10)
+exam1 = Exam("Midterm Exam", 40)
+project1 = Project("Final Project", 100)
+
+exam2 = Exam("Final Exam", 60)
+
+gradebook.add_assessment("NM01", quiz1)
+gradebook.add_assessment("NM01", exam1)
+gradebook.add_assessment("NM01", project1)
+gradebook.add_assessment("NM01", exam2)
+ 
+course = gradebook.courses["NM01"]
+
+for assessment in course.assessments:
+    assessment.display_info()
