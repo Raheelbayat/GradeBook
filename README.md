@@ -41,7 +41,9 @@ I have used inheritance in Assessment (Parent class) and Quiz, Project, and Exam
 I have used method overriding in child classes (Quiz, Project, and Exam).
 
 ## What are my two custom features?
-Search better and Teacher comments.
+I have added letter grade for the students result in Gradebook, which it converts number averages into A, B, C, D, or F.
+The second custom feature is Teacher comments.
+
 =======
-jhl
->>>>>>> fdbfc51ae080d8d9aea031ee2f5761de9b37bbce
+bottom
+>>>>>>>

@@ -71,52 +71,114 @@ class Gradebook:
         print("Grade is recorded successfully.")
 
     def calculate_average(self, student_id, course_code):
-        total_score = 0
+
+        total_percentage = 0
         number_of_existing_scores = 0
-        for key, score in self.grades.items():
-            if key[0] == student_id and key[1] == course_code:
-                total_score += score
-                number_of_existing_scores += 1
 
-        if student_id not in self.students:
-            print(f"No student found for {course_code}")
-            return
-        if number_of_existing_scores == 0:
-            print(f"No score found for {course_code}")
-            return
-
-        average_score = total_score / number_of_existing_scores
-        return average_score
-
-    def show_report(self, student_id):
         if student_id not in self.students:
             print("Student not found")
             return
+
+        if course_code not in self.courses:
+            print("Course not found")
+            return
+
+        course = self.courses[course_code]
+
+        for key, score in self.grades.items():
+
+            if key[0] == student_id and key[1] == course_code:
+
+                assessment_title = key[2]
+
+                for assessment in course.assessments:
+
+                    if assessment.title == assessment_title:
+                        percentage = assessment.calculate_percentage(score)
+
+                        total_percentage += percentage
+                        number_of_existing_scores += 1
+                        break
+
+        if number_of_existing_scores == 0:
+            print("No score found")
+            return
+
+        return total_percentage / number_of_existing_scores
+
+    def get_letter_grade(self, average):
+        if average >= 95:
+            return "A"
+        elif average >= 80:
+            return "B"
+        elif average >= 70:
+            return "C"
+        elif average >= 60:
+            return "D"
+        else:
+            return "F"
+
+    def show_report(self, student_id):
+
+        if student_id not in self.students:
+            print("Student not found")
+            return
+
         student = self.students[student_id]
+        print("\n\n")
+        print("===== Student Report =====")
+        print("\n")
+        print(f"Student ID: {student.student_id}")
         print(f"Name: {student.full_name}")
         print(f"Email: {student.email}")
 
-        for (studentid, course_code, assessment_title), score in self.grades.items():
-            if studentid == student_id:
-                course = self.courses[course_code]
-                assessment = course.find_assessment(assessment_title)
-                letter = assessment.get_letter_grade(score)
-                message = assessment.grade_message(score)
-
-            print(f"{course_code} - {assessment_title}: {score}")
-            print(f"Letter Grade: {letter}")
-
+        total_percentage = 0
+        number_of_scores = 0
+        print("\n\n")
         for course_code in student.courses:
-            average = self.calculate_average(student_id, course_code)
 
-            print(f"{course_code} Average: {average}")
+            course = self.courses[course_code]
 
-            if average >= self.passing_grades:
-                print("Result: Passed")
-            else:
-                print("Result: Failed")
-            print(f"Feedback: {message}")
+            print(f"Course: {course.course_code} - {course.course_name}")
+            print("\n\n")
+            print("Grades:")
 
+            for key, score in self.grades.items():
+
+                if key[0] == student_id and key[1] == course_code:
+
+                    assessment_title = key[2]
+
+                    for assessment in course.assessments:
+                        if assessment.title == assessment_title:
+                            percentage = assessment.calculate_percentage(score)
+
+                            print(
+                                f"{assessment_title}: {score}/{assessment.max_score} = {percentage:.0f}%"
+                            )
+
+                            total_percentage += percentage
+                            number_of_scores += 1
+                            break
+        print("\n\n")
+        if number_of_scores == 0:
+            print("No grades available")
+            return
+
+        average = total_percentage / number_of_scores
+
+        print(f"Average: {average:.2f}%")
+
+        letter_grade = self.get_letter_grade(average)
+
+        if average >= self.passing_grades:
+            result = "Passed"
+        else:
+            result = "Failed"
+
+        print(f"Average: {average:.2f}%")
+        print(f"Letter Grade: {letter_grade}")
+        print(f"Result: {result}")
 
     def search_student(self, studentterm):
         if studentterm in self.students:
@@ -129,10 +191,12 @@ class Gradebook:
         print("Student not found")
 
     def delete_student(self, student_id):
+        def delete_student(self, student_id):
+            if student_id not in self.students:
+                print("Student not found")
+                return
+
         student = self.students[student_id]
-        if student_id not in self.students:
-            print("Student not found")
-            return
         for course_code in student.courses:
             if course_code in self.courses:
                 course = self.courses[course_code]
@@ -145,3 +209,24 @@ class Gradebook:
             return "Passed"
         else:
             return "Failed"
+
+    def teacher_comment(self, student_id, course_code):
+
+        if student_id not in self.students:
+            print("Student not found")
+            return
+
+        average = self.calculate_average(student_id, course_code)
+
+        student = self.students[student_id]
+
+        letter_grade = self.get_letter_grade(average)
+
+        if letter_grade == "A" or letter_grade == "B":
+            print(f"I am really proud of you!")
+
+        elif letter_grade == "C":
+            print(f"Good effort, keep improving.")
+
+        else:
+            print(f"Keep practicing. I am sure, you can perform much better!")

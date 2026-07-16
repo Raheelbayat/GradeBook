@@ -1,6 +1,5 @@
 from student import Student
 from course import Course
-from assessment import Assessment
 from quiz import Quiz
 from exam import Exam
 from project import Project
@@ -8,32 +7,86 @@ from gradebook import Gradebook
 
 gradebook = Gradebook()
 
-student1 = Student("S001", "Ahmad Bayat", "ahmad@gmail.com", [])
-student2 = Student("S002", "Munira Bayat", "MN123bayat@yahoo.com", [])
+
+student1 = Student(
+    "S001",
+    "Ahmad Rahimi",
+    "ahmad6456@gmail.com",
+    []
+)
 
 gradebook.add_student(student1)
-gradebook.add_student(student2)
 
-course1 = Course("NM01", "Neuromatch Computational Neuroscience Course")
+
+course1 = Course(
+    "Nm01",
+    "Neuromatch"
+)
+
+
 gradebook.add_course(course1)
 
-gradebook.enroll_student("S001", "NM01")
-gradebook.enroll_student("S002", "NM01")
-print(gradebook.students)
-print(gradebook.courses)
 
-quiz1 = Quiz("Quiz 1", 10)
-exam1 = Exam("Midterm Exam", 40)
-project1 = Project("Final Project", 100)
+gradebook.enroll_student(
+    "S001",
+    "Nm01"
+)
 
-exam2 = Exam("Final Exam", 60)
 
-gradebook.add_assessment("NM01", quiz1)
-gradebook.add_assessment("NM01", exam1)
-gradebook.add_assessment("NM01", project1)
-gradebook.add_assessment("NM01", exam2)
+quiz1 = Quiz(
+    "Quiz 1",
+    10
+)
 
-course = gradebook.courses["NM01"]
+midterm = Exam(
+    "Midterm Exam",
+    100
+)
 
-for assessment in course.assessments:
-    assessment.display_info()
+final_project = Project(
+    "Final Project",
+    100
+)
+
+
+gradebook.add_assessment(
+    "Nm01",
+    quiz1
+)
+
+gradebook.add_assessment(
+    "Nm01",
+    midterm
+)
+
+gradebook.add_assessment(
+    "Nm01",
+    final_project
+)
+
+
+gradebook.record_grade(
+    "S001",
+    "Nm01",
+    "Quiz 1",
+    10
+)
+
+gradebook.record_grade(
+    "S001",
+    "Nm01",
+    "Midterm Exam",
+    100
+)
+
+gradebook.record_grade(
+    "S001",
+    "Nm01",
+    "Final Project",
+    99
+)
+
+
+gradebook.show_report("S001")
+
+gradebook.teacher_comment("S001", "Nm01")

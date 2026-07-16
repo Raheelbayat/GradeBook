@@ -32,8 +32,9 @@ class Student:
               f"\nFull name: {self.full_name}"
               f"\nEmail: {self.email}")
 
-        if self.courses:
-            print("Courses:", ", ".join(self.courses))
-        else:
+        if self.courses: #boolean
+            print("Courses:", ", ".join(self.courses)) #I have used ".join" as before to combines elements of a list into a single string
+                                                        # output will be for ex: NM01, PY101, etc...
+        else: #If the list is empty:
             print("Courses: No courses enrolled")
 
