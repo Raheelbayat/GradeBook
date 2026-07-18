@@ -11,8 +11,7 @@ gradebook = Gradebook()
 student1 = Student(
     "S001",
     "Ahmad Rahimi",
-    "ahmad6456@gmail.com",
-    []
+    "ahmad6456@gmail.com"
 )
 
 gradebook.add_student(student1)
@@ -85,7 +84,6 @@ gradebook.record_grade(
     "Final Project",
     99
 )
-
 
 gradebook.show_report("S001")
 

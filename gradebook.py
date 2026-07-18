@@ -1,6 +1,3 @@
-import student
-
-
 class Gradebook:
     def __init__(self):
         self.students = {}  # Bcz my dictionaries are empty I didnt write them as parameters.
@@ -127,20 +124,20 @@ class Gradebook:
         student = self.students[student_id]
         print("\n\n")
         print("===== Student Report =====")
-        print("\n")
+
         print(f"Student ID: {student.student_id}")
         print(f"Name: {student.full_name}")
         print(f"Email: {student.email}")
 
         total_percentage = 0
         number_of_scores = 0
-        print("\n\n")
+        print("\n")
         for course_code in student.courses:
 
             course = self.courses[course_code]
 
             print(f"Course: {course.course_code} - {course.course_name}")
-            print("\n\n")
+            print("\n")
             print("Grades:")
 
             for key, score in self.grades.items():
@@ -160,7 +157,7 @@ class Gradebook:
                             total_percentage += percentage
                             number_of_scores += 1
                             break
-        print("\n\n")
+        print("\n")
         if number_of_scores == 0:
             print("No grades available")
             return
@@ -176,7 +173,6 @@ class Gradebook:
         else:
             result = "Failed"
 
-        print(f"Average: {average:.2f}%")
         print(f"Letter Grade: {letter_grade}")
         print(f"Result: {result}")
 

@@ -36,7 +36,7 @@ project.py
 
 
 ## Where I have used encapsulation, inheritance, and method overriding.
-I have used encapsulation in
+I have used encapsulation in in the Quiz class.
 I have used inheritance in Assessment (Parent class) and Quiz, Project, and Exam classes (child classes).
 I have used method overriding in child classes (Quiz, Project, and Exam).
 

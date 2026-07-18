@@ -3,13 +3,13 @@ class Assessment:
     def __init__(self, title, max_score):
         self.title = title
         self.__max_score = max_score
-    @property #is my getter and I can access it using this code
+    @property
     def max_score(self):
         return self.__max_score
     
-    @max_score.setter #here I have used Setter with validation
+    @max_score.setter
     def max_score(self, max_score):
-        if max_score > 0:
+        if max_score < 0:
             self.__max_score = max_score
         else:
             print("Invalid max score")
