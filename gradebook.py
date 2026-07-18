@@ -32,8 +32,7 @@ class Gradebook:
     def add_assessment(self, course_code, assessment):
         if course_code not in self.courses:
             print(f"No course found")
-            return  # I should keep in mind that if I write return instead of print to make the code shorter
-        # the code will run and if the course dont found among course list then it will just return none without any message: no course found.
+            return
 
         course = self.courses[course_code]
         course.assessments.append(assessment)
@@ -83,13 +82,9 @@ class Gradebook:
         course = self.courses[course_code]
 
         for key, score in self.grades.items():
-
             if key[0] == student_id and key[1] == course_code:
-
                 assessment_title = key[2]
-
                 for assessment in course.assessments:
-
                     if assessment.title == assessment_title:
                         percentage = assessment.calculate_percentage(score)
 
@@ -145,15 +140,10 @@ class Gradebook:
                 if key[0] == student_id and key[1] == course_code:
 
                     assessment_title = key[2]
-
                     for assessment in course.assessments:
                         if assessment.title == assessment_title:
                             percentage = assessment.calculate_percentage(score)
-
-                            print(
-                                f"{assessment_title}: {score}/{assessment.max_score} = {percentage:.0f}%"
-                            )
-
+                            print(f"{assessment_title}: {score}/{assessment.max_score} = {percentage:.0f}%")
                             total_percentage += percentage
                             number_of_scores += 1
                             break
@@ -163,27 +153,24 @@ class Gradebook:
             return
 
         average = total_percentage / number_of_scores
-
         print(f"Average: {average:.2f}%")
 
         letter_grade = self.get_letter_grade(average)
+        print(f"Letter Grade: {letter_grade}")
 
         if average >= self.passing_grades:
             result = "Passed"
         else:
             result = "Failed"
-
-        print(f"Letter Grade: {letter_grade}")
         print(f"Result: {result}")
 
-    def search_student(self, studentterm):
-        if studentterm in self.students:
-            return self.students[studentterm]
+    def search_student(self, keyword):
+        if keyword in self.students:
+            return self.students[keyword]
 
         for student in self.students.values():
-            if student.full_name == studentterm:
+            if student.full_name == keyword:
                 return student
-
         print("Student not found")
 
     def delete_student(self, student_id):

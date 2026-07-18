@@ -34,7 +34,7 @@ class Student:
 
         if self.courses: #boolean
             print("Courses:", ", ".join(self.courses)) #I have used ".join" as before to combines elements of a list into a single string
-                                                        # output will be for ex: NM01, PY101, etc...
+
         else: #If the list is empty:
             print("Courses: No courses enrolled")
 

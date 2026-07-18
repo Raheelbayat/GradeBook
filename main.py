@@ -84,7 +84,7 @@ gradebook.record_grade(
     "Final Project",
     99
 )
-
+gradebook.delete_student("S001")
 gradebook.show_report("S001")
 
 gradebook.teacher_comment("S001", "Nm01")
