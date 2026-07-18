@@ -9,7 +9,7 @@ class Assessment:
     
     @max_score.setter
     def max_score(self, max_score):
-        if max_score < 0:
+        if max_score > 0:
             self.__max_score = max_score
         else:
             print("Invalid max score")
